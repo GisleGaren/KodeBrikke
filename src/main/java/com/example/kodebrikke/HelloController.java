@@ -40,13 +40,19 @@ class KodeGenerator {
     public String formaterBrukteKoder() {
         /* løp igjennom arrayet og formater kodene med \n i mellom
             kodene fra og med 0 til nyKodeIndeks er "brukte" koder */
+        String ut = "";
+        for(int i = 0; i < kodeArray.length ; i++){
+            ut = ut + kodeArray[i] + "\n";
+        }
+        return ut;
     }
 }
 
 public class HelloController {
 
     // opprett KodeGeneratoren her
-    KodeGenerator kode = new KodeGenerator()
+    public final int MAKS_ANTALL=10;
+    KodeGenerator kode = new KodeGenerator(MAKS_ANTALL);
 
     @FXML
     private Label lblGamleKoder;
@@ -57,11 +63,15 @@ public class HelloController {
     @FXML
     void gamleKoder(ActionEvent event) {
         // kall til formaterBrukteKoder og legg resultatet i lblGamleKoder
+        kode.formaterBrukteKoder();
+        lblGamleKoder.setText(kode.formaterBrukteKoder());
     }
 
     @FXML
     void nyKode(ActionEvent event) {
         // kall til nyKode og legg resultat i lblNykode
+        kode.nyKode(10);
+        lblNyKode.setText(kode.nyKode(10));
     }
 
 }
